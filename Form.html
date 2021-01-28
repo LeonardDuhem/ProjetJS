@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/Form.css">
+</head>
+<body>
+
+<div class="box-login">
+
+    <h2>Inscrivez-vous.</h2>
+    <form method="post">
+        <label for='prenom'>Entrez votre prénom svp : </label>
+        <input type='text' name='prenom' id='prenom' maxlength='20' placeholder="Prénom" required>
+        <span id='missPrenom'></span><br>
+        <label for='nom'>Entrez votre nom svp : </label>
+        <input type='text' name='nom' id='nom' maxlength='20' placeholder="Nom" required>
+        <span id='missNom'></span><br>
+        <label for='address'>Entrez votre adresse: </label>
+        <input type="address" name="address" id="address" placeholder="Adresse" required><br>
+        <label for='mail'>Entrez votre mail : </label>
+        <input type='email' name='mail' id='mail' placeholder="Email" required><br>
+        <label for='tel'>Numéro de téléphone :</label>
+        <input type='tel' name='tel' id='tel' placeholder="Numéro de téléphone" required><br>  
+        <label for="credit card">Numero de carte :</label>
+        <input type="credit card" name="credit card" id="credit card" placeholder="Numéro de carte" required><br>
+        <input type='submit' value='Valider' id='bouton_envoi'>
+    </form>
+    
+
+</div>
+
+
+    <script src="app.js"></script>
+    <script src="js/Form.js"></script>
+</body>
+</html>
