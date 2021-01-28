@@ -29,7 +29,7 @@ missPrenom.style.color = 'red';
                   missNom.style.color = 'orange';
               }else{ 
               }
-              
+            }
 function phonenumber(inputtxt)
 {
   var phoneno = /^\d{10}$/;
@@ -53,7 +53,7 @@ var regEx = /^5[1-5][0-9]{14}$|^2(?:2(?:2[1-9]|[3-9][0-9])|[3-6][0-9][0-9]|7(?:[
      return false;
      }
 }    
-function Validation()
+function Validation(address)
 {
 var a = document.form.address.value;
 if(a=="")
