@@ -1,11 +1,13 @@
-let body = document.querySelector('tbody');
+let tbody = document.querySelector('tbody');
 let cart = document.querySelectorAll('.add-to-cart');
 let liste = document.querySelector('#cart-table');
 let allName = document.querySelectorAll('h4');
 let allPrice = document.querySelectorAll('.discount');
 let allImg = document.querySelectorAll('img');
 let allStock = document.querySelectorAll('.stock');
-
+let body = document.querySelector('body');
+let notif = document.createElement('ul');
+notif.setAttribute('id','notification_container');
 
 cart.forEach(function(elem){
     elem.addEventListener("click" , clicBtn)
@@ -37,7 +39,7 @@ let stock = course.querySelector('.stock').textContent
 console.log(stock)
 
 addcart(img ,name , price, 1)
-
+notifications(name)
 }
 
 //Création "thead"
@@ -63,26 +65,39 @@ function addcart(Img ,Article , Prix , Qt){
 
     let newSupp = document.createElement('td');
     let img = document.createElement('img');
-    img.addEventListener('click', supprimerTache);
-    img.setAttribute('src', 'img/cancel.png');
+    img.addEventListener('click', supprimerArticle);
+    img.setAttribute('src', 'img/close.png');
     img.className = 'supprimer-item';
     newSupp.appendChild(img);
     newTr.appendChild(newSupp);
     
-    body.appendChild(newTr);
-    
+    tbody.appendChild(newTr);
 
 }
 
-function supprimerTache(e) {
+function notifications(Article) {
+    const infoNotif = document.createElement('li');
+    infoNotif.setAttribute('class','content');
 
-    body.forEach(el => {
+    const imgNotif = document.createElement('img');
+    imgNotif.setAttribute('src','img/info.png');
+
+    const textNotif = document.createElement('p');
+    textNotif.innerHTML = Article + ' à été ajouté au panier';
+    
+    infoNotif.appendChild(imgNotif);
+    infoNotif.appendChild(textNotif);
+    notif.appendChild(infoNotif);
+    body.appendChild(notif);
+
+    setTimeout(function() {
+        notif.removeChild(infoNotif);
+    },2000);
+}
+
+function supprimerArticle(e) {
+    console.log('article supprimé');
   
-      if(e.target.parentNode.getAttribute('data-key') === el.getAttribute('data-key')){
-        el.remove();
-        body = body.filter(li => li.dataset.key !== el.dataset.key);
-      }
-  
-    })
-  
-  }
+}
+    
+
