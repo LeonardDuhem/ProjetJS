@@ -8,6 +8,8 @@ let allStock = document.querySelectorAll('.stock');
 let body = document.querySelector('body');
 let notif = document.createElement('ul');
 notif.setAttribute('id','notification_container');
+let toutSupp = document.querySelector('#empty-cart');
+toutSupp.addEventListener('click',supprimerToutArticle)
 
 cart.forEach(function(elem){
     elem.addEventListener("click" , clicBtn)
@@ -107,10 +109,12 @@ function notifications(Article, isAjout) {
 }
 
 function supprimerArticle(elem) {
-    const index = elem.target.parentElement.parentElement.rowIndex ;
-    const name = elem.target.parentElement.parentElement.querySelectorAll('td')[index].textContent;
+    const name = elem.target.parentElement.parentElement.querySelectorAll('td')[1].textContent;
     elem.target.parentElement.parentElement.remove();
     notifications(name, false);
 }
     
+function supprimerToutArticle(){
+    tbody.removeChild();
+}
 
