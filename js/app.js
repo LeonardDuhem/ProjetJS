@@ -39,7 +39,7 @@ let stock = course.querySelector('.stock').textContent
 console.log(stock)
 
 addcart(img ,name , price, 1)
-notifications(name)
+notifications(name , true)
 }
 
 //Création "thead"
@@ -75,20 +75,31 @@ function addcart(Img ,Article , Prix , Qt){
 
 }
 
-function notifications(Article) {
+function notifications(Article, isAjout) {
     const infoNotif = document.createElement('li');
     infoNotif.setAttribute('class','content');
 
     const imgNotif = document.createElement('img');
     imgNotif.setAttribute('src','img/info.png');
 
-    const textNotif = document.createElement('p');
-    textNotif.innerHTML = Article + ' à été ajouté au panier';
-    
-    infoNotif.appendChild(imgNotif);
-    infoNotif.appendChild(textNotif);
-    notif.appendChild(infoNotif);
-    body.appendChild(notif);
+    if (isAjout === true){
+        const textNotif = document.createElement('p');
+        textNotif.innerHTML = Article + ' a été ajouté au panier';
+
+        infoNotif.appendChild(imgNotif);
+        infoNotif.appendChild(textNotif);
+        notif.appendChild(infoNotif);
+        body.appendChild(notif);
+    }
+    else{
+        const textNotif = document.createElement('p');
+        textNotif.innerHTML = Article + ' a été supprimé du panier';
+
+        infoNotif.appendChild(imgNotif);
+        infoNotif.appendChild(textNotif);
+        notif.appendChild(infoNotif);
+        body.appendChild(notif);
+    }
 
     setTimeout(function() {
         notif.removeChild(infoNotif);
@@ -97,7 +108,9 @@ function notifications(Article) {
 
 function supprimerArticle(elem) {
     const index = elem.target.parentElement.parentElement.rowIndex ;
+    const name = elem.target.parentElement.parentElement.querySelectorAll('td')[index].textContent;
     elem.target.parentElement.parentElement.remove();
+    notifications(name, false);
 }
     
 
