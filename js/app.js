@@ -8,8 +8,7 @@ let allStock = document.querySelectorAll('.stock');
 let body = document.querySelector('body');
 let notif = document.createElement('ul');
 notif.setAttribute('id','notification_container');
-let toutSupp = document.querySelector('#empty-cart');
-toutSupp.addEventListener('click',supprimerToutArticle)
+
 
 cart.forEach(function(elem){
     elem.addEventListener("click" , clicBtn)
@@ -72,6 +71,9 @@ function addcart(Img ,Article , Prix , Qt){
     img.className = 'supprimer-item';
     newSupp.appendChild(img);
     newTr.appendChild(newSupp);
+
+    let toutSupp = document.querySelector('#empty-cart');
+    toutSupp.addEventListener('click',supprimerToutArticle)
     
     tbody.appendChild(newTr);
 
@@ -115,6 +117,10 @@ function supprimerArticle(elem) {
 }
     
 function supprimerToutArticle(){
-    tbody.removeChild();
+
+        tbody.remove()
+        document.location.reload()
+        
+    
 }
 
