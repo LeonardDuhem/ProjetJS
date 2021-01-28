@@ -95,9 +95,9 @@ function notifications(Article) {
     },2000);
 }
 
-function supprimerArticle(e) {
-    console.log('article supprimé');
-  
+function supprimerArticle(elem) {
+    const index = elem.target.parentElement.parentElement.rowIndex ;
+    elem.target.parentElement.parentElement.remove();
 }
     
 
