@@ -8,17 +8,16 @@ let allStock = document.querySelectorAll('.stock');
 
 
 cart.forEach(function(elem){
-elem.addEventListener("click" , clicBtn)
-    
+    elem.addEventListener("click" , clicBtn)
 })
+
 //Vérif du clique
 function clicBtn(e){
     //Valeur en html
     const course = e.target.parentElement.parentElement;
-    getInfoElem(course)
-    
-    
+    getInfoElem(course)  
 }
+
 //Récupération valeur
 function getInfoElem(course){
 //Nom du Cours
@@ -39,9 +38,8 @@ console.log(stock)
 
 addcart(img ,name , price, 1)
 
-
-
 }
+
 //Création "thead"
 function addcart(Img ,Article , Prix , Qt){
     
@@ -49,10 +47,7 @@ function addcart(Img ,Article , Prix , Qt){
 
     let newImg = document.createElement('td');
     newImg.innerHTML +=`<img src=${Img}>`;
-    
     newTr.appendChild(newImg);
-    
-    
 
     let newName = document.createElement('td');
     newTr.appendChild(newName);
@@ -66,14 +61,28 @@ function addcart(Img ,Article , Prix , Qt){
     newTr.appendChild(newQt);
     newQt.innerHTML = Qt;
 
-    let newRemove = document.createElement('td');
-    newTr.appendChild(newRemove);
+    let newSupp = document.createElement('td');
+    let img = document.createElement('img');
+    img.addEventListener('click', supprimerTache);
+    img.setAttribute('src', 'img/cancel.png');
+    img.className = 'supprimer-item';
+    newSupp.appendChild(img);
+    newTr.appendChild(newSupp);
     
     body.appendChild(newTr);
-
-    
-    
     
 
 }
 
+function supprimerTache(e) {
+
+    body.forEach(el => {
+  
+      if(e.target.parentNode.getAttribute('data-key') === el.getAttribute('data-key')){
+        el.remove();
+        body = body.filter(li => li.dataset.key !== el.dataset.key);
+      }
+  
+    })
+  
+  }
