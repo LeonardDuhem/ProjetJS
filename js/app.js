@@ -140,6 +140,7 @@ function supprimerArticle(elem) {
 }
 //Suppression de tout les élements du panier
 function supprimerToutArticle() {
+    localStorage.clear()
     tbody.remove()
     document.location.reload();
 }
