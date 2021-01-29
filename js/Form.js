@@ -1,7 +1,12 @@
 var formValid = document.getElementById('bouton_envoi');
 var prenom = document.getElementById('prenom');
+var nom = document.getElementById('nom');
 var missPrenom = document.getElementById('missPrenom');
+var missNom = document.getElementById('missNom');
 var prenomValid = /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+)?$/;
+var nomValid = /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+)?$/;
+var creditCradNum = document.getElementById('creditCradNum');
+var inputtxt = document.getElementById('inputtxt')
             
 formValid.addEventListener('click', validation);
             
@@ -30,6 +35,7 @@ missPrenom.style.color = 'red';
               }else{ 
               }
             }
+//Verification du numero de telephone
 function phonenumber(inputtxt)
 {
   var phoneno = /^\d{10}$/;
@@ -40,6 +46,7 @@ function phonenumber(inputtxt)
     return false;
    }
   }
+  /*
 function creditCardValidation(creditCradNum)
 {
 var regEx = /^5[1-5][0-9]{14}$|^2(?:2(?:2[1-9]|[3-9][0-9])|[3-6][0-9][0-9]|7(?:[01][0-9]|20))[0-9]{12}$/;
@@ -68,4 +75,4 @@ alert("Votre texte doit contenir entre 20 et 100 caractères");
 document.form.address.select();
 return false;
 }
-}
+}/*
