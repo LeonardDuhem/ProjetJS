@@ -98,13 +98,16 @@ function addcart(Img, Article, Prix, Qt) {
 
 }
 
+//création des notification
 function notifications(Article, isAjout) {
+    //création de la carte de notification 
     const infoNotif = document.createElement('li');
     infoNotif.setAttribute('class', 'content');
 
     const imgNotif = document.createElement('img');
     imgNotif.setAttribute('src', 'img/info.png');
 
+    //si on ajoute dans le panier
     if (isAjout === true) {
         const textNotif = document.createElement('p');
         textNotif.innerHTML = Article + ' a été ajouté au panier';
@@ -114,6 +117,7 @@ function notifications(Article, isAjout) {
         notif.appendChild(infoNotif);
         body.appendChild(notif);
     }
+    //si on supprime du panier
     else {
         const textNotif = document.createElement('p');
         textNotif.innerHTML = Article + ' a été supprimé du panier';
@@ -123,7 +127,7 @@ function notifications(Article, isAjout) {
         notif.appendChild(infoNotif);
         body.appendChild(notif);
     }
-
+    //fait en sorte que la notification reste 2 secondes
     setTimeout(function () {
         notif.removeChild(infoNotif);
     }, 2000);
