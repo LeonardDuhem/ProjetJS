@@ -125,6 +125,6 @@ function supprimerArticle(elem) {
 }
 
 function supprimerToutArticle() {
-    tbody.removeChild();
+    tbody.remove()
+    document.location.reload();
 }
-
