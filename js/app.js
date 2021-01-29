@@ -7,49 +7,50 @@ let allImg = document.querySelectorAll('img');
 let allStock = document.querySelectorAll('.stock');
 let body = document.querySelector('body');
 let notif = document.createElement('ul');
-notif.setAttribute('id','notification_container');
+notif.setAttribute('id', 'notification_container');
+let toutSupp = document.querySelector('#empty-cart');
+toutSupp.addEventListener('click', supprimerToutArticle)
 
-
-cart.forEach(function(elem){
-    elem.addEventListener("click" , clicBtn)
+cart.forEach(function (elem) {
+    elem.addEventListener("click", clicBtn)
 })
 
 //Vérif du clique
-function clicBtn(e){
+function clicBtn(e) {
     //Valeur en html
     const course = e.target.parentElement.parentElement;
-    getInfoElem(course)  
+    getInfoElem(course)
 }
 
 //Récupération valeur
-function getInfoElem(course){
-//Nom du Cours
-let name = course.querySelector('h4').textContent
-console.log(name)
-//Prix
-let price = course.querySelector('.discount').textContent
-console.log(price)
-//Image
-let img =course.querySelector('img').src
-console.log(img)
-//Place dans la liste de cours
-let place = course.querySelector('a').getAttribute('data-id')
-console.log(place)
-//Nombre en Stock
-let stock = course.querySelector('.stock').textContent
-console.log(stock)
+function getInfoElem(course) {
+    //Nom du Cours
+    let name = course.querySelector('h4').textContent
+    console.log(name)
+    //Prix
+    let price = course.querySelector('.discount').textContent
+    console.log(price)
+    //Image
+    let img = course.querySelector('img').src
+    console.log(img)
+    //Place dans la liste de cours
+    let place = course.querySelector('a').getAttribute('data-id')
+    console.log(place)
+    //Nombre en Stock
+    let stock = course.querySelector('.stock').textContent
+    console.log(stock)
 
-addcart(img ,name , price, 1)
-notifications(name , true)
+    addcart(img, name, price, 1)
+    notifications(name, true)
 }
 
 //Création "thead"
-function addcart(Img ,Article , Prix , Qt){
-    
+function addcart(Img, Article, Prix, Qt) {
+
     let newTr = document.createElement('tr');
 
     let newImg = document.createElement('td');
-    newImg.innerHTML +=`<img src=${Img}>`;
+    newImg.innerHTML += `<img src=${Img}>`;
     newTr.appendChild(newImg);
 
     let newName = document.createElement('td');
@@ -72,21 +73,28 @@ function addcart(Img ,Article , Prix , Qt){
     newSupp.appendChild(img);
     newTr.appendChild(newSupp);
 
-    let toutSupp = document.querySelector('#empty-cart');
-    toutSupp.addEventListener('click',supprimerToutArticle)
-    
     tbody.appendChild(newTr);
+
+    let teste = {
+        'Article': Article,
+        'Qt': Qt,
+        'Prix': Prix
+    }
+    localStorage.setItem(Article, JSON.stringify(teste));
+    test = localStorage.getItem(Article);
+    console.log(teste);
+    console.log(test)
 
 }
 
 function notifications(Article, isAjout) {
     const infoNotif = document.createElement('li');
-    infoNotif.setAttribute('class','content');
+    infoNotif.setAttribute('class', 'content');
 
     const imgNotif = document.createElement('img');
-    imgNotif.setAttribute('src','img/info.png');
+    imgNotif.setAttribute('src', 'img/info.png');
 
-    if (isAjout === true){
+    if (isAjout === true) {
         const textNotif = document.createElement('p');
         textNotif.innerHTML = Article + ' a été ajouté au panier';
 
@@ -95,7 +103,7 @@ function notifications(Article, isAjout) {
         notif.appendChild(infoNotif);
         body.appendChild(notif);
     }
-    else{
+    else {
         const textNotif = document.createElement('p');
         textNotif.innerHTML = Article + ' a été supprimé du panier';
 
@@ -105,9 +113,9 @@ function notifications(Article, isAjout) {
         body.appendChild(notif);
     }
 
-    setTimeout(function() {
+    setTimeout(function () {
         notif.removeChild(infoNotif);
-    },2000);
+    }, 2000);
 }
 
 function supprimerArticle(elem) {
@@ -115,12 +123,8 @@ function supprimerArticle(elem) {
     elem.target.parentElement.parentElement.remove();
     notifications(name, false);
 }
-    
-function supprimerToutArticle(){
 
-        tbody.remove()
-        document.location.reload()
-        
-    
+function supprimerToutArticle() {
+    tbody.removeChild();
 }
 
